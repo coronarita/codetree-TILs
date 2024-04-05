@@ -119,7 +119,7 @@ def move(x, y):
                     # continue
     #   - 없을 경우 '본인이 독점계약 한 땅'으로 이동
     else:
-        print("All monopolied")
+        # print("All monopolied")
         for next_d in dir_priority[p_num][cur_d]:
             nx, ny = x + dxs[next_d], y + dys[next_d]
             if not in_range(nx, ny): continue
