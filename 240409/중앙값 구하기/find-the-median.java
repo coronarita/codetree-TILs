@@ -10,22 +10,25 @@ public class Main {
         int ans = -1;
 
         if (a > b){
-            if (b > c){
+            if (b > c){ // a > b > c
                 ans = b;
-            } else {
-                if (a > c) {
+            } else { // b > a
+                if (a > c) { // b > a > c
                     ans = c;
-                }
+                } else {
                     ans = a;
+                }
+                    
             }
         }
         else { // b > a
             if (b > c){
                 if (a > c) {
                     ans = a;
-                } // c > a
+                } else // c > a
                     ans = c;
-                } else { // c > b
+                } 
+                else { // c > b
                 ans = b;
            }
        }
