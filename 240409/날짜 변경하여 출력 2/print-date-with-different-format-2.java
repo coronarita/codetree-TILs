@@ -5,9 +5,9 @@ public class Main {
         Scanner sc = new Scanner(System.in);
         
         sc.useDelimiter("-");
-        m = sc.nextInt();
-        d = sc.nextInt();
-        y = sc.nextInt();
+        int m = sc.nextInt();
+        int d = sc.nextInt();
+        int y = sc.nextInt();
 
         System.out.printf("%d.%d.%d",y,m,d);
 
