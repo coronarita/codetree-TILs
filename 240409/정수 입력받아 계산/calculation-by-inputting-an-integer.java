@@ -6,7 +6,7 @@ public class Main {
 
         int a = sc.nextInt();
         a *= 2;
-        a += 3
+        a += 3;
 
         System.out.print(a);
     }
