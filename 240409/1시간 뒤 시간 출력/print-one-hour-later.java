@@ -9,8 +9,8 @@ public class Main {
 
         // System.out.printf("%d:%d", timeArr[0]+1, timeArr[1]);
         sc.useDelimiter(":");
-        int a = nextInt();
-        int b = nextInt();
+        int a = sc.nextInt();
+        int b = sc.nextInt();
         
         System.out.println(a+1 + ":" + b);
 
