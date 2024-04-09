@@ -7,7 +7,7 @@ public class Main {
         // 1시간 뒤의 시간을 출력
         String[] timeArr = sc.next().split(":");
 
-        System.out.printf("%d:%d", timeArr[0]+1, timeArr[1]);
+        System.out.printf("%d:%d", int(timeArr[0])+1, int(timeArr[1]));
                 
 
     }
