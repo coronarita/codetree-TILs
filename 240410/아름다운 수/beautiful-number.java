@@ -7,33 +7,18 @@ public class Main {
 
     public static boolean satisfied(){
         // selected를 검사합니다.
-        int prv_num = 0;
-        int _cnt = 1;
-
-        for (int i=0; i<selected.size();i++){
-            int i_num = selected.get(i);
-    
-            if (_cnt == i_num) {
-                prv_num = selected.get(i);
-                _cnt = 1;
-                continue;
-            }
-            // i_num이 이전과 다르다.
-            if (selected.get(i) != prv_num){
-                if (_cnt != prv_num) return false;
-                else {
-                    prv_num = selected.get(i);
-                    cnt = 1;
-                }
-                
-            }
-            else { // 같다.
-                // 2부터는 검사를 해야 됨
-                prv_num = selected.get(i);
-                _cnt++;
-            }
-
-
+        // 연달아 같은 숫자가 나오는 시작 위치를 잡습니다.
+        for(int i = 0; i < n; i += selected.get(i)) {
+            // 만약 연속하여 해당 숫자만큼 나올 수 없다면
+            // 아름다운 수가 아닙니다.
+            if(i + selected.get(i) - 1 >= n)
+                return false;
+            // 연속하여 해당 숫자만큼 같은 숫자가 있는지 확인합니다.
+            // 하나라도 다른 숫자가 있다면
+            // 아름다운 수가 아닙니다.
+            for(int j = i; j < i + selected.get(i); j++)
+                if(selected.get(j) != selected.get(i))
+                    return false;
         }
         
         return true;
@@ -41,8 +26,9 @@ public class Main {
 
     public static void backtracking(int currNum){
         if (currNum == n){
-            // System.out.println(selected);
+            
             if (satisfied()){
+                // System.out.println(selected);
                 cnt++;
             }
             return;
