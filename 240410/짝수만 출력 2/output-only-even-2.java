@@ -10,6 +10,6 @@ public class Main{
         do {
             if (b%2 == 0)
             System.out.print(b + " ");
-        } while ( b >= a);
+        } while ( b-- >= a);
     }
 }
