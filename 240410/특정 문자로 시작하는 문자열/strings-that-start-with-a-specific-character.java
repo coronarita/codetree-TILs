@@ -13,17 +13,16 @@ public class Main {
             sArr[i] = sc.next();
         }
         char cond = sc.next().charAt(0);
-
+        int len = 0;
+        int tot = 0;
         for (int i=0; i<n; i++){
             if (sArr[i].charAt(0)==cond){
-                cntArr[i] = sArr[i].length();
+                len = sArr[i].length();
+                tot += len;
                 cnt++;
             }
         }
-        int tot = 0;
-        for (int i=0;i<n; i++){
-            tot += cntArr[i];
-        }
+        
         System.out.print(cnt + " ");
         System.out.printf("%.2f", ((double)tot/cnt));
     }
