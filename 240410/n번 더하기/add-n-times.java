@@ -10,7 +10,7 @@ public class Main{
         // a에 n을 더하는 과정을 n번 반복
 
         int cnt = 0;
-        while (cnt <= n ){
+        while (cnt < n ){
             a += n;
             System.out.println(a);
             cnt++;
