@@ -7,22 +7,32 @@ public class Main {
 
     public static boolean satisfied(){
         // selected를 검사합니다.
-        int cur = 0;
-        
+        int prv_num = 0;
+        int _cnt = 1;
+
         for (int i=0; i<selected.size();i++){
             int i_num = selected.get(i);
-            // i_num이 출현 할 때 검사
-            if (i_num == 1) continue;
-            // 2부터는 검사를 해야 됨
-            int _cnt = 0;
-            for (int j=i; j<i+i_num;j++){
-                if (j >= selected.size()) return false;
-                if (selected.get(j) == i_num) _cnt++;
+    
+            if (_cnt == i_num) {
+                prv_num = selected.get(i);
+                _cnt = 1;
+                continue;
             }
-            if (_cnt != i_num) break;
+            // i_num이 이전과 다르다.
+            if (selected.get(i) != prv_num){
+                if (_cnt != prv_num) return false;
+                else {
+                    prv_num = selected.get(i);
+                    cnt = 1;
+                }
+                
+            }
+            else { // 같다.
+                // 2부터는 검사를 해야 됨
+                prv_num = selected.get(i);
+                _cnt++;
+            }
 
-            // System.out.println();
-            
 
         }
         
@@ -31,6 +41,7 @@ public class Main {
 
     public static void backtracking(int currNum){
         if (currNum == n){
+            // System.out.println(selected);
             if (satisfied()){
                 cnt++;
             }
