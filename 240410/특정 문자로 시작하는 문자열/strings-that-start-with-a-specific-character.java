@@ -25,6 +25,6 @@ public class Main {
             tot += cntArr[i];
         }
         System.out.print(cnt + " ");
-        System.out.printf("%.2f", (double)(tot/cnt));
+        System.out.printf("%.2f", ((double)tot/cnt));
     }
 }
