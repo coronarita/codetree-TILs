@@ -10,7 +10,7 @@ public class Main{
         int cnt = 0;
         
         if (a>0){
-            while (cnt <= n ){
+            while (cnt <= b ){
             System.out.print(a);
             cnt++;
             }
