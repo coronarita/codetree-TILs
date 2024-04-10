@@ -7,10 +7,11 @@ public class Main {
         int a = sc.nextInt();       
         int b = sc.nextInt();       
  
-        while (a!=b){
+        do {
             if (a%2==0)
-                System.out.print(a+++" ");
-        }
+                System.out.print(a +" ");
+            a++;
+        }while (a<=b);
 
     }
 }
