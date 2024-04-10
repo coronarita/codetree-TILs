@@ -23,7 +23,6 @@ public class Main {
             }
         }
         
-        System.out.print(cnt + " ");
-        System.out.printf("%.2f", ((double)tot/cnt));
+        System.out.printf("%d %.2f", cnt, ((double)tot/cnt));
     }
 }
