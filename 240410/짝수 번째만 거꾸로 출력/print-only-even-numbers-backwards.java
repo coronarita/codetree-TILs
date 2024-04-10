@@ -6,10 +6,12 @@ public class Main {
 
         String str = sc.next();
         int len = str.length();
-        for (int i=len-1;i>-1;i--){
-            if ((len-1 - i)%2 != 0) continue;
-            System.out.print(str.charAt(i));
+        String ans = "";
+
+        for (int i=0;i<len;i++){
+            if (i%2!=0) ans = str.charAt(i) + ans;
         }
 
+        System.out.print(ans);
     }
 }
