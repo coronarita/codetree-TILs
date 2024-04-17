@@ -33,7 +33,7 @@ for rest_mem in rests :
 		mod = cust % member_capa
 		if mod > 0 :
 			div += 1
-		ans += di  
+		ans += div  
 
 # 4. 답을 도출한다.
 print (ans)
