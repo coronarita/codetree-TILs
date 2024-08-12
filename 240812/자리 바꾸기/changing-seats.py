@@ -1,44 +1,35 @@
-# 자리 바꾸기 2024-08-12 13:47
-
-# n개의 줄에 거쳐 I번째 줄에 I번 사람이 자리바꿈이 이뤄지는 동안 앉게되는 자리의 개수
-
 N, K = map(int, input().split())
-o_list = [i for i in range(N)]
-p_list = [i for i in range(N)]
-# 각자 몇 군데의 자리에 앉을 수 있는지를 구하는 프로그램 - 무한반복 시 초기상태로 돌아오게 됨 !
 
-# 방문여부를 처리하기 위해서, n x n의 행렬을 정의
-# visited = [[False for _ in range(N)] for _ in range(N)]
-visited = [set() for _ in range(N)] # 중복처리
-
+# 자리 바꾸기 규칙
 rule = [tuple(map(int, input().split())) for _ in range(K)]
-idx = 0
-# 초기방문처리
+
+# 각 사람의 방문한 자리를 기록할 리스트
+visited = [set() for _ in range(N)]
+p_list = list(range(N))  # 현재 자리 상태
+
+# 초기 방문 기록 (자기 자리)
 for i in range(N):
-    # visited[i][i] = True
     visited[i].add(i)
 
+# 주기 계산을 위한 변수
+start_state = list(range(N))
+idx = 0
+
 while True:
-
-    # swap rule
-    r_idx = idx % K
-    a, b = rule[r_idx]
-    
-    # 몇번 사람 ? - a-1에 있는 사람
-    a_num, b_num = p_list[a-1], p_list[b-1]
+    # 현재 자리 바꾸기 규칙 적용
+    a, b = rule[idx % K]
     p_list[a-1], p_list[b-1] = p_list[b-1], p_list[a-1]
-    
-    # 몇번 사람 - 어디에 갔는지
-    # visited[a_num][b-1] = True
-    # visited[b_num][a-1] = True
-    # print(p_list)
-    visited[a_num].add(b-1)
-    visited[b_num].add(a-1)
-    
 
-    if o_list == p_list : 
-        break
+    # 방문한 자리 기록
+    visited[p_list[a-1]].add(a-1)
+    visited[p_list[b-1]].add(b-1)
+
     idx += 1
 
-for i in range(N):
-    print(len(visited[i]))
+    # 주기가 반복되면 종료
+    if p_list == start_state:
+        break
+
+# 각 사람이 방문한 자리의 개수 출력
+for v in visited:
+    print(len(v))
