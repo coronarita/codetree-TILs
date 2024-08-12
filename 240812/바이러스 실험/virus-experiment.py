@@ -42,7 +42,8 @@ def consume():
             if len(virus_map[r][c]) == 0 :
                 continue
 
-            for virus_age in virus_map[r][c] :
+            for i in range(len(virus_map[r][c])) :
+                virus_age = heapq.heappop(virus_map[r][c])
 
                 # 양분 섭취를 진행합니다.
                 if virus_age > feeding[r][c]: # feeding이 부족하면 바로 죽음
@@ -53,14 +54,17 @@ def consume():
                     heapq.heappush(temp_map[r][c], virus_age)
 
     # pr(feeding)
+    # print("Temp map")
     # pr(temp_map)
+    # print("Dead")
+    # pr(dead_list)
 
     # dead_list 를 feeding에 처리
     for r in range(n):
         for c in range(n):
             for dead_virus_age in dead_list[r][c]:
                 # 죽게되는 바이러스는 양분으로 변함 - 다 하고나서 해야 됨
-                feeding[r][c] +=  dead_virus_age // 2
+                feeding[r][c] += dead_virus_age // 2
 
     # pr(temp_map) # 여기서 번식 해야 됨
     temp_map = take_spread(temp_map)
@@ -68,6 +72,7 @@ def consume():
     for r in range(n):
         for c in range(n):
             virus_map[r][c] = temp_map[r][c]
+
 
 def take_spread(v_map):
 
@@ -82,7 +87,6 @@ def take_spread(v_map):
         for c in range(n):
             for virus_age in v_map[r][c]:
                 if virus_age % 5 == 0 :
-
                     # 인접한 칸 8개에 나이 1인 바이러스가 생김
                     for i in range(8):
                         nr, nc = r + adj_r[i], c + adj_c[i]
@@ -95,13 +99,19 @@ def add():
         for c in range(n):
             feeding[r][c] += add_feeding[r][c]
 def simulate():
+    # pr(feeding)
+    # pr(virus_map)
 
     consume()
+    # pr(feeding)
+    # pr(virus_map)
+
     add()
     # pr(feeding)
     # pr(virus_map)
 
 for _ in range(k):
+    # print(f"{1+_} round")
     simulate()
 
 # survived
@@ -111,3 +121,6 @@ print(
     [len(virus_map[i][j]) for i in range(n) for j in range(n)]
 )
 )
+
+#TC6에서 오답 (97 - 112) - 더 많이 산출된다. 죽었어야했는데 살아있다는 뜻?
+# heapq구조가 중간에 무너지는 것 발견
