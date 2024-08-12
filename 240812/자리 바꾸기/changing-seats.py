@@ -36,7 +36,7 @@ while True:
     visited[b_num].add(a-1)
     
     idx += 1
-    if o_list == p_list or idx == 3*K+1 : 
+    if o_list == p_list : 
         break
     
 
