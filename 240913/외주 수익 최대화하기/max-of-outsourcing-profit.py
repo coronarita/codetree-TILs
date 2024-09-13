@@ -31,6 +31,12 @@ def is_available():
         start_time, _ = times[selected_jobs[i+1]]
         if end_time >= start_time:
             return False
+    
+    for job_idx in selected_jobs:
+        _, end_time = times[job_idx]
+        if end_time > n:
+            return False
+            
     return True
 
 def find_max_profit(curr_idx):
