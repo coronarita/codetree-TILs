@@ -1,28 +1,51 @@
 n = int(input())
-works = []
 
-# 외주수익 최대화 (t, p), (idx+1)일차 
-# 2 5 / 2 7 / 1 3
-# 0 - 2 / 5
-# 1 - 3 / 7
-# 2 - 3 / 3
+given_time_profits = [
+    tuple(map(int, input().split()))
+    for _ in range(n)
+]
 
-for s in range(n):
-    t, p = map(int, input().split())
-    e = s + t
-    works.append((s, e, p, t))
+times = [
+    (i, i + time -1 ) # - 1을 해준다 ? 
+    for i, (time, _) in enumerate(given_time_profits, start = 1)
+]
 
-works.sort(key=lambda x:(-x[2], x[3], x[0]))
-ans = 0
+profits = [
+    profit 
+    for _, profit in given_time_profits
+]
 
-plans = [0] * n
-for work in works : 
-    s, e, p, t = work
-    # 일이 가능한지 판단
-    if not all(plans[s:e]) :
-        for i in range(s, e):
-            plans[i] = 1
-        ans += p
+selected_jobs = []
+max_profit = 0
 
-# print(plans)
-print(ans)
+def get_profit():
+    return sum(
+        [profits[job_idx] for
+        job_idx in selected_jobs]
+    )
+
+# 가능여부 검사하기
+def is_available():
+    for i in range(len(selected_jobs) -1):
+        _, end_time = times[selected_jobs[i]]
+        start_time, _ = times[selected_jobs[i+1]]
+        if end_time >= start_time:
+            return False
+    return True
+
+def find_max_profit(curr_idx):
+    global max_profit
+
+    if curr_idx == n : 
+        if is_available():
+            max_profit = max(max_profit, get_profit())
+        return
+    
+    find_max_profit(curr_idx + 1)
+
+    selected_jobs.append(curr_idx)
+    find_max_profit(curr_idx + 1)
+    selected_jobs.pop()
+
+find_max_profit(0)
+print(max_profit)
