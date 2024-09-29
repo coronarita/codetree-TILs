@@ -43,7 +43,4 @@ def backtracking(cnt:int) -> None:
 
 # backtracking
 backtracking(0) # 인수 : 선택 된 연산자의 수
-
-
-
-print(mini, maxi)
+print(int(mini), int(maxi))
