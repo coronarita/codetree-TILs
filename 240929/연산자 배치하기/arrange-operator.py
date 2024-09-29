@@ -1,8 +1,9 @@
 n = int(input())
 nums=list(map(int, input().split()))
 ops=list(map(int, input().split()))
+import sys
 
-maxi, mini = -1e8, 1e9
+maxi, mini = -sys.maxsize, sys.maxsize
 
 op_dict = {0:'+', 1:'-', 2:'*'}
 
@@ -43,4 +44,4 @@ def backtracking(cnt:int) -> None:
 
 # backtracking
 backtracking(0) # 인수 : 선택 된 연산자의 수
-print(int(mini), int(maxi))
+print(mini, maxi)
