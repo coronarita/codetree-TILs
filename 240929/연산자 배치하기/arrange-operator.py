@@ -14,17 +14,17 @@ op_dict = {0:'+', 1:'-', 2:'*'}
 selected = []
 
 def calc(selected):
-    val = 0
-    equ = ""
-    for idx, num in enumerate(nums):
-        if idx != n-1:
-            equ += str(num)
-            op = op_dict[selected[idx]]
-            equ += op
-        else : 
-            equ += str(num)
+    val = nums[0]
+    
+    for idx, num in enumerate(nums[1:]):
+        equ = ""
+        equ += str(val)
+        op = op_dict[selected[idx]]
+        equ += op
+        equ += str(num)
+        val += eval(equ)
 
-    return eval(equ)
+    return val
 
 def backtracking(cnt:int) -> None:
     global maxi, mini
