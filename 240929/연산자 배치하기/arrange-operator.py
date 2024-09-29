@@ -30,7 +30,7 @@ def backtracking(cnt:int) -> None:
     # base cond
     if cnt == n-1 : 
         val = calc(selected)
-        maxi, mini = max(maxi, val), min(maxi, val)
+        maxi, mini = max(maxi, val), min(mini, val)
         return
     
     for idx in range(len(ops)):
