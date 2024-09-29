@@ -2,7 +2,7 @@ n = int(input())
 nums=list(map(int, input().split()))
 ops=list(map(int, input().split()))
 
-maxi, mini = -1e9, 1e9
+maxi, mini = -1e8, 1e9
 
 op_dict = {0:'+', 1:'-', 2:'*'}
 
