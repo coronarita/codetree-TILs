@@ -22,7 +22,8 @@ def calc(selected):
         op = op_dict[selected[idx]]
         equ += op
         equ += str(num)
-        val += eval(equ)
+        # print(equ)
+        val = eval(equ)
 
     return val
 
