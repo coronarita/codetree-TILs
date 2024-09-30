@@ -13,7 +13,7 @@ dys = [0, 1, 0, -1]
 # pr()
 def in_range(x, y):
     # 진입 시에는 북쪽이 입장 가능하기 때문에 범위내로 처리합니다.
-    return -1<=x<=R and 0<y<=C
+    return 0<x<=R and 0<y<=C
 def in_range_fin(x, y):
     return 0<x<=R and 0<y<=C
 ans = []
