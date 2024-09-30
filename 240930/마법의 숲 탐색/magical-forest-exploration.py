@@ -13,7 +13,7 @@ dys = [0, 1, 0, -1]
 # pr()
 def in_range(x, y):
     # 진입 시에는 북쪽이 입장 가능하기 때문에 범위내로 처리합니다.
-    return 0<=x<=R and 0<y<=C
+    return -1<=x<=R and 0<y<=C
 def in_range_fin(x, y):
     return 0<x<=R and 0<y<=C
 ans = []
@@ -185,9 +185,9 @@ for gol in gol_list :
                 ans.append(row + 1)
                 break
     # if cnt > 7:
-    #     pr(vis)
-    #     pr(grid)
-    #     print(ans)
+    # pr(vis)
+    # pr(grid)
+    # print(ans)
 
 # 정답 : 정령들의 최종 위치 총합
 print(sum(ans))
