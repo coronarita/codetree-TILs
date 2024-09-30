@@ -47,13 +47,22 @@ def clear_grid():
 
 
 def exit_adjacent(row, col, e_d):
+
     # 출구
     er, ec = row + dxs[e_d], col + dys[e_d]
-    # 인접하다? - 출구 (er, ec) 4방향 중 1방향의 grid가 1인지?
-    if is_empty(er, ec, e_d) :
-        return False
 
-    return True
+    # 인접하다? - 출구 (er, ec) 4방향 중 1방향의 grid가 1인지?
+    ld, rd = (e_d - 1) % 4, (e_d + 1) % 4
+    d_list = [ld, e_d, rd]
+
+    for dd in d_list:
+        # 인접 좌표들
+        nr, nc = row + dxs[dd], col + dys[dd]
+        if not in_range(nr, nc) or grid[nr][nc] > 0:
+            return True
+
+    return False
+
 
 
 def bfs(x, y):
@@ -95,7 +104,7 @@ def bfs(x, y):
                     vis[nx][ny] = 3
                     q.append((nx, ny))
                 else:
-                    vis[nx][ny] = 1
+                    vis[nx][ny] = grid[nx][ny]
                     bot_row = max(bot_row, nx)
 
         else : # 출구일 때
@@ -104,11 +113,11 @@ def bfs(x, y):
                 if not in_range_fin(nx, ny) : continue
                 if grid[nx][ny] <= 0 : continue
                 if vis[nx][ny] : continue
-                vis[nx][ny] = 1
+                vis[nx][ny] = grid[nx][ny]
                 bot_row = max(bot_row, nx)
                 q.append((nx, ny))
 
-    # pr(vis)
+
     return bot_row
 
 def reset_vis():
@@ -116,8 +125,9 @@ def reset_vis():
         for j in range(C+1):
             vis[i][j] = 0
 
-
+cnt = 0
 for gol in gol_list :
+    cnt+=1
     # 골렘들을 이동 시킴 - 초기 골렘의 좌표는 0 (진입 전)
     row = 0
     col, e_d = gol
@@ -174,9 +184,10 @@ for gol in gol_list :
             else :
                 ans.append(row + 1)
                 break
-
-    # pr(grid)
-    # print(ans)
+    # if cnt > 7:
+    #     pr(vis)
+    #     pr(grid)
+    #     print(ans)
 
 # 정답 : 정령들의 최종 위치 총합
 print(sum(ans))
