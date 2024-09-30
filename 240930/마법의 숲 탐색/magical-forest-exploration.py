@@ -60,7 +60,8 @@ def exit_adjacent(row, col, e_d):
     for dd in d_list:
         # 인접 좌표들
         nr, nc = row + dxs[dd], col + dys[dd]
-        if not in_range(nr, nc) or grid[nr][nc] > 0:
+        if not in_range(nr, nc) : continue
+        if grid[nr][nc] > 0:
             return True
 
     return False
