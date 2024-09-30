@@ -77,6 +77,7 @@ def bfs(x, y):
                 if grid[nx][ny] == 2 : # 출구라면
                     # print(nx, ny)
                     vis[nx][ny] = 2
+                    bot_row = max(bot_row, nx)
                     # '출구'일 때 건너갈 수 있음
                     if exit_adjacent(x, y, d):
                         q.append((nx, ny))
