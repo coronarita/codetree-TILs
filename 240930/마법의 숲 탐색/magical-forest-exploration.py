@@ -35,6 +35,8 @@ def is_empty(row, col, d):
         # 인접 좌표에서 d방향으로 한칸 전진
         nr += dxs[d]
         nc += dys[d]
+        # 예외처리 : 아직 입장하지않음
+        if nr <= 0 : continue
         if not in_range(nr, nc) or grid[nr][nc] > 0 :
             return False
     return True
