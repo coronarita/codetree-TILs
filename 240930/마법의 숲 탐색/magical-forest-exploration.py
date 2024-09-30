@@ -37,13 +37,18 @@ def is_empty(row, col, d):
 
 
 def clear_grid():
-    global grid
-    grid = [[0 for _ in range(C)] for _ in range(R + 3)]  # R - 2 offset (북쪽에서 시작 - 격자 밖)
-
+    # global grid
+    # grid = [[0 for _ in range(C)] for _ in range(R + 3)]  # R - 2 offset (북쪽에서 시작 - 격자 밖)
+    for i in range(R+3):
+        for j in range(C):
+            grid[i][j] = 0
 
 def clear_vis():
-    global vis
-    vis = [[0 for _ in range(C)] for _ in range(R + 3)]
+    # global vis
+    # vis = [[0 for _ in range(C)] for _ in range(R + 3)]
+    for i in range(R+3):
+        for j in range(C):
+            vis[i][j] = 0
 
 
 def in_range(x, y):
@@ -66,6 +71,7 @@ def bfs(row, col):
         if grid[x][y] == 3 :
             for d in range(4):
                 nx, ny = x +dxs[d], y + dys[d]
+                if vis[nx][ny]: continue
                 if not vis[nx][ny] and grid[nx][ny] == 2 :
                     vis[nx][ny] = 2
                     q.append((nx, ny))
@@ -80,7 +86,8 @@ def bfs(row, col):
                 nx, ny = x + dxs[d], y + dys[d]
                 # 출구에서는 나갈 수 있음
                 if not in_range(nx, ny): continue
-                if not vis[nx][ny] and grid[nx][ny] > 0 :
+                if vis[nx][ny]: continue
+                if grid[nx][ny] > 0 :
                     vis[nx][ny] = 1
                     q.append((nx, ny))
                 max_row = max(nx, max_row)
@@ -90,14 +97,16 @@ def bfs(row, col):
                 nx, ny = x + dxs[d], y + dys[d]
                 # 출구에서는 나갈 수 있음
                 if not in_range(nx, ny): continue
+                if vis[nx][ny] : continue
                 if grid[nx][ny] == 3 :
                     vis[nx][ny] = 3
                     q.append((nx, ny))
-                else :
-                    vis[nx][ny] = 1
+                # elif grid[nx][ny] > 0:
+                #     vis[nx][ny] = grid[nx][ny]
                 max_row = max(nx, max_row)
 
     # pr(vis)
+    # print(max_row)
     return max_row - 2
 
 
