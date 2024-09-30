@@ -137,4 +137,4 @@ for _ in range(K):
         for j in range(5):
             grid[i][j] = temp[i][j]
 
-    print(value)
+    print(value, end = " ")
